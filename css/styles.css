@@ -1,0 +1,28 @@
+.book {
+    border: 1px solid black;
+    width: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.sub-title > div {
+    font-size: 0.8rem;
+}
+
+.shelf {
+    display: grid;
+    grid-template-columns: repeat(4,205px);
+}
+
+.hide {
+    display: none;
+}
