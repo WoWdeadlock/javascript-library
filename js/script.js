@@ -62,6 +62,25 @@ newBookButton.addEventListener("click", () => {
 
     infoBox.classList.remove("hide");
 
+});
+
+goBackButton.addEventListener("click", () => {
+
+    newBookButton.classList.remove("hide");
+    confirmBookButton.classList.add("hide");
+    goBackButton.classList.add("hide");
+
+    infoBox.classList.add("hide");
+
+});
+
+confirmBookButton.addEventListener("click", () => {
+
+    let inputs = document.querySelectorAll(".input-box");
+
+    let book = new Book(inputs[1].value, inputs[0].value, inputs[2].value);
+
+    bookToDisplay(book);
 })
 
 // let book1 = new Book("Aone", "Tone", 40);
