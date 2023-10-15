@@ -1,3 +1,5 @@
+let shelf = document.querySelector(".shelf");
+
 const myLibrary = [];
 
 function Book(author, title, pages) {
@@ -9,12 +11,10 @@ function Book(author, title, pages) {
 
 }
 
-let shelf = document.querySelector(".shelf");
-
 function addBookToLibrary(Book) {
 
     myLibrary.push(Book);
-
+    displayBooks();
 }
 
 function bookToDisplay(Book) {
@@ -44,8 +44,7 @@ function bookToDisplay(Book) {
     newBook.appendChild(title);
     newBook.appendChild(subtitle);
 
-    shelf.appendChild(newBook);
-
+    addBookToLibrary(newBook);
 }
 
 let newBookButton = document.querySelector("#new-book");
@@ -79,20 +78,29 @@ confirmBookButton.addEventListener("click", () => {
     let inputs = document.querySelectorAll(".input-box");
 
     let book = new Book(inputs[1].value, inputs[0].value, inputs[2].value);
-
-    bookToDisplay(book);
-})
-
-// let book1 = new Book("Aone", "Tone", 40);
-// let book2 = new Book("Atwo", "Ttwo", 50);
-// let book3 = new Book("Athree", "Tthree", 60);
-
-// addBookToLibrary(book1);
-// addBookToLibrary(book2);
-// addBookToLibrary(book3);
-
-// for (let i = 0; i < myLibrary.length; i++) {
-
-//     bookToDisplay(myLibrary[i]);
     
-// }
+    bookToDisplay(book);
+
+});
+
+function displayBooks() {
+
+    shelf.innerHTML = "";
+
+    myLibrary.forEach((book, index) => {
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "DELETE";
+        deleteButton.addEventListener("click", () => removeBook(index));
+
+        const newBook = book.cloneNode(true);
+        newBook.appendChild(deleteButton);
+        shelf.appendChild(newBook);
+    })
+}
+
+function removeBook(index) {
+    
+    myLibrary.splice(index,1);
+    displayBooks();
+}
